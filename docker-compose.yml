@@ -1,0 +1,16 @@
+services:
+  warehouse:
+    image: postgres:16-alpine
+    container_name: etl_warehouse
+    restart: always
+    environment:
+      POSTGRES_DB: warehouse
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+    ports:
+      - "5432:5432"
+    volumes:
+      - warehouse_data:/var/lib/postgresql/data
+
+volumes:
+  warehouse_data:
