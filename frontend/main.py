@@ -56,7 +56,7 @@ st.markdown("""
 # ============================================================================
 
 with st.sidebar:
-    st.image("https://via.placeholder.com/150x50?text=Data+Warehouse", use_column_width=True)
+    st.image("https://via.placeholder.com/150x50?text=Data+Warehouse", width="stretch")
     st.title("Navigation")
 
 # Global filters
