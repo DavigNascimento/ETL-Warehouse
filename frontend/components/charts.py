@@ -150,7 +150,7 @@ def plot_top_countries_bar(
     
     df_sorted = df.nlargest(limit, metric_column)
     
-    fig = px.barh(
+    fig = px.bar(
         df_sorted.sort_values(metric_column),
         x=metric_column,
         y='country_name',
@@ -159,7 +159,7 @@ def plot_top_countries_bar(
         template=CHART_THEME,
         height=max(400, len(df_sorted) * 25),
         color=metric_column,
-        color_continuous_scale=COLOR_SCALE_ACCENT
+        color_continuous_scale=COLOR_SCALE_MAIN
     )
     
     fig.update_layout(showlegend=False, hovermode='y')
@@ -227,7 +227,7 @@ def plot_bloc_performance_bar(df: pd.DataFrame, metric_column: str = "total_valu
     
     df_sorted = df.sort_values(metric_column, ascending=True)
     
-    fig = px.barh(
+    fig = px.bar(
         df_sorted,
         x=metric_column,
         y='economic_bloc',
@@ -294,7 +294,7 @@ def plot_top_products_bar(
     
     df_sorted = df.nlargest(limit, metric_column).sort_values(metric_column)
     
-    fig = px.barh(
+    fig = px.bar(
         df_sorted,
         x=metric_column,
         y='product_name',
@@ -357,7 +357,7 @@ def plot_currency_performance_bar(df: pd.DataFrame, metric_column: str = "total_
     
     df_sorted = df.nlargest(limit, metric_column).sort_values(metric_column)
     
-    fig = px.barh(
+    fig = px.bar(
         df_sorted,
         x=metric_column,
         y='currency_name',
