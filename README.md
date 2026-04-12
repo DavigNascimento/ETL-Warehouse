@@ -31,6 +31,12 @@ Esse script roda automaticamente apenas na primeira inicializacao do volume de d
 pip install -r requirements.txt
 ```
 
+Recomendado usar um ```.venv```, para a criação de um ambiente mais controlado de pacotes, usando as opções do VSCode ou:
+
+```bash
+python -m venv .venv
+```
+
 ## 4) Executar ETL
 
 ```bash
@@ -38,6 +44,12 @@ python etl_comex.py
 ```
 
 O script le as configuracoes de conexao do arquivo `.env`.
+
+## 5) Executar o Dashboard
+
+```bash
+streamlit run frontend/main.py
+```
 
 ## Observacoes importantes
 
