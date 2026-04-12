@@ -1,16 +1,24 @@
 services:
   warehouse:
-    image: postgres:16-alpine
+    image: mysql:8.0
     container_name: etl_warehouse
     restart: always
     environment:
-      POSTGRES_DB: warehouse
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password123
+      MYSQL_ROOT_PASSWORD: ${DW_DB_ROOT_PASSWORD:-root123}
+      MYSQL_DATABASE: ${DW_DB_NAME:-comex_dw}
+      MYSQL_USER: ${DW_DB_USER:-etl_user}
+      MYSQL_PASSWORD: ${DW_DB_PASSWORD:-etl_password}
     ports:
-      - "5432:5432"
+      - "${DW_DB_PORT:-3306}:3306"
     volumes:
-      - warehouse_data:/var/lib/postgresql/data
+      - warehouse_data:/var/lib/mysql
+      - ./DWschema.sql:/docker-entrypoint-initdb.d/01-DWschema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${DW_DB_ROOT_PASSWORD:-root123}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
 
 volumes:
   warehouse_data:
