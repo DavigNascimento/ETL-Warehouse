@@ -37,12 +37,12 @@ def _get_env_int(name, default=None, required=False):
 
 # --- Banco OLTP (fonte - Aiven) ---
 OLTP_CONFIG = {
-    "host":     _get_env("OLTP_DB_HOST", required=True),
-    "port":     _get_env_int("OLTP_DB_PORT", default="3306", required=True),
-    "user":     _get_env("OLTP_DB_USER", required=True),
-    "password": _get_env("OLTP_DB_PASSWORD", required=True),
-    "database": _get_env("OLTP_DB_NAME", required=True),
-    "ssl_disabled": _get_env("OLTP_DB_SSL_DISABLED", default="false").lower() == "true",
+    "host":     _get_env("DB_HOST", required=True),
+    "port":     _get_env_int("DB_PORT", default="3306", required=True),
+    "user":     _get_env("DB_USER", required=True),
+    "password": _get_env("DB_PASSWORD", required=True),
+    "database": _get_env("DB_NAME", required=True),
+    "ssl_disabled": _get_env("DB_SSL_DISABLED", default="false").lower() == "true",
 }
 
 DW_CONFIG = {
