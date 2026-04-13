@@ -11,14 +11,14 @@ services:
     ports:
       - "${DW_DB_PORT:-3306}:3306"
     volumes:
-      - warehouse_data:/var/lib/mysql
+      - warehouse_db_storage:/var/lib/mysql
       - ./DWschema.sql:/docker-entrypoint-initdb.d/01-DWschema.sql:ro
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${DW_DB_ROOT_PASSWORD:-root123}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DW_DB_ROOT_PASSWORD:-root123}"]
       interval: 10s
       timeout: 5s
       retries: 10
-      start_period: 20s
+      start_period: 40s
 
 volumes:
-  warehouse_data:
+  warehouse_db_storage:
